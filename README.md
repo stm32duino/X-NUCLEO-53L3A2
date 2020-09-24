@@ -6,7 +6,7 @@ The APIs provide simple distance measure and multi-object detection in both poll
 
 ## Examples
 
-There are 5 examples with the  X-NUCLEO-53L3A2 library.
+There are 2 examples with the  X-NUCLEO-53L3A2 library.
 
 * X_NUCLEO_53L3A2_HelloWorld: This example code is to show how to get multi-object detection and proximity
   values of the onboard VL53L3CX sensor in polling mode.
