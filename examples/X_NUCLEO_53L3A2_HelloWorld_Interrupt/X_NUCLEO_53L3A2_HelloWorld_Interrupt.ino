@@ -58,12 +58,17 @@
 #define DEV_I2C Wire
 #define SerialPort Serial
 
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 13
+#endif
+#define LedPin LED_BUILTIN
+
 #define interruptPin A2
 
 /* Please uncomment the line below if you have the satellites mounted */
 //#define SATELLITES_MOUNTED
 
-// Components.
+// Components
 STMPE1600DigiOut *xshutdown_top;
 VL53LX_X_NUCLEO_53L3A2 *sensor_vl53lx_top;
 
@@ -85,7 +90,7 @@ void setup()
 {
   VL53LX_Error status;
   // Led.
-  pinMode(13, OUTPUT);
+  pinMode(LedPin, OUTPUT);
   pinMode(interruptPin, INPUT_PULLUP);
   attachInterrupt(interruptPin, measure, FALLING);
 
@@ -139,7 +144,7 @@ void loop()
 
     interruptCount = 0;
     // Led blinking.
-    digitalWrite(13, HIGH);
+    digitalWrite(LedPin, HIGH);
 
     status = sensor_vl53lx_top->VL53LX_GetMeasurementDataReady(&NewDataReady);
     if ((!status) && (NewDataReady != 0)) {
@@ -168,6 +173,6 @@ void loop()
       }
     }
 
-    digitalWrite(13, LOW);
+    digitalWrite(LedPin, LOW);
   }
 }
