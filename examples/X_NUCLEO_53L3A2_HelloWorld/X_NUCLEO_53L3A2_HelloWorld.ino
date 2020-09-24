@@ -53,6 +53,11 @@
 #define DEV_I2C Wire
 #define SerialPort Serial
 
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 13
+#endif
+#define LedPin LED_BUILTIN
+
 /* Please uncomment the line below if you want also to use the satellites */
 //#define SATELLITES_MOUNTED
 
@@ -71,7 +76,7 @@ VL53LX_X_NUCLEO_53L3A2 *sensor_vl53lx_top;
 void setup()
 {
   // Led.
-  pinMode(13, OUTPUT);
+  pinMode(LedPin, OUTPUT);
 
   // Initialize serial for output.
   SerialPort.begin(115200);
@@ -132,7 +137,7 @@ void loop()
   } while (!NewDataReady);
 
   //Led on
-  digitalWrite(13, HIGH);
+  digitalWrite(LedPin, HIGH);
 
   if ((!status) && (NewDataReady != 0)) {
     status = sensor_vl53lx_top->VL53LX_GetMultiRangingData(pMultiRangingData);
@@ -160,7 +165,7 @@ void loop()
     }
   }
 
-  digitalWrite(13, LOW);
+  digitalWrite(LedPin, LOW);
 
 #ifdef SATELLITES_MOUNTED
 
@@ -172,7 +177,7 @@ void loop()
   } while (!NewDataReady);
 
   //Led on
-  digitalWrite(13, HIGH);
+  digitalWrite(LedPin, HIGH);
 
   if ((!status) && (NewDataReady != 0)) {
     status = sensor_vl53lx_left->VL53LX_GetMultiRangingData(pMultiRangingData);
@@ -200,7 +205,7 @@ void loop()
     }
   }
 
-  digitalWrite(13, LOW);
+  digitalWrite(LedPin, LOW);
 
   NewDataReady = 0;
   no_of_object_found = 0;
@@ -210,7 +215,7 @@ void loop()
   } while (!NewDataReady);
 
   //Led on
-  digitalWrite(13, HIGH);
+  digitalWrite(LedPin, HIGH);
 
   if ((!status) && (NewDataReady != 0)) {
     status = sensor_vl53lx_right->VL53LX_GetMultiRangingData(pMultiRangingData);
@@ -238,6 +243,6 @@ void loop()
     }
   }
 
-  digitalWrite(13, LOW);
+  digitalWrite(LedPin, LOW);
 #endif
 }
