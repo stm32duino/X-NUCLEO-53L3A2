@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For x-nucleo-53l3a2
+# Syntax Coloring Map For X-NUCLEO-53L3A2
 #######################################
 
 #######################################
@@ -15,4 +15,6 @@ VL53LX_X_NUCLEO_53L3A2	KEYWORD1
 
 VL53LX_Off	KEYWORD2
 VL53LX_On	KEYWORD2
+begin	KEYWORD2
+end	KEYWORD2
 write	KEYWORD2
